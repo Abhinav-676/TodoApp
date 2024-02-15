@@ -1,6 +1,6 @@
-# a simple react based todo app
+# A simple react based todo app
 
-Before use install the node packages using:
+Before use, install the node packages with:
 `npm install`
 
 To run live server:
