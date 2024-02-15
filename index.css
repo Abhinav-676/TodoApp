@@ -1,0 +1,14 @@
+.complete {
+    text-decoration: line-through;
+    color: hsl(0, 0%, 29%);
+}
+
+#todo-app {
+    background-color: bisque;
+    max-width: 25rem;
+}
+
+li {
+    list-style-type: none;
+}
+
