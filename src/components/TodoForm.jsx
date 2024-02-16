@@ -8,8 +8,9 @@ function TodoForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        todo.id = uuidv4()
-        props.addTodo(todo)
+        const newTodo = {...todo}
+        newTodo.id = uuidv4()
+        props.addTodo(newTodo)
         setTodo({task: "", id: ""})
     }
 
