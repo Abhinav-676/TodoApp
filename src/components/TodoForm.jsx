@@ -1,14 +1,16 @@
+import { PlusIcon } from '@heroicons/react/24/solid'
 import { useState } from "react"
+import { v4 as uuidv4 } from 'uuid';
 
 function TodoForm(props) {
 
-    const [todo, setTodo] = useState({task: "", isComplete: false})
+    const [todo, setTodo] = useState({task: "", id: ""})
 
     function handleSubmit(e) {
         e.preventDefault()
-        todo.task = todo.task.trim()
-        props.setList([...props.todoList, todo])
-        setTodo({task: "", isComplete: false})
+        todo.id = uuidv4()
+        props.addTodo(todo)
+        setTodo({task: "", id: ""})
     }
 
     return (
@@ -19,11 +21,13 @@ function TodoForm(props) {
                         className="input" 
                         name="todo"
                         value={todo.task}
-                        onInput={(e) => {setTodo({task: e.target.value, isComplete: false})}}
+                        onInput={(e) => {setTodo({task: e.target.value, id: ""})}}
                     />
                 </div>
                 <div className="control">
-                    <button className="button is-primary">Add</button>
+                    <button className="button is-primary">
+                        <PlusIcon className='icon' />
+                    </button>
                 </div>
             </div>
         </form>

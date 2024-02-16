@@ -1,34 +1,37 @@
+import { TrashIcon } from '@heroicons/react/24/solid'
+import { useState } from "react"
+
 // utility class for stlying completed todo
 let classComplete
 
 function TodoItem(props) {
+    const [isComplete, setCheck] = useState(false);
+
     function handleDelete() {
-        const todoList = Array.from(props.todoList)
-        const index = todoList.indexOf(props.todo)
-        todoList.splice(index, 1)
-
-        props.setList(todoList)
+        props.deleteTodo(props.todo.id)
     }
 
-    function handleComplete() {
-        const todoList = Array.from(props.todoList)
-        const index = todoList.indexOf(props.todo)
-        todoList[index].isComplete = true;
-
-        props.setList(todoList)
+    function handleCheckboxChange() { 
+        setCheck(!isComplete)
     }
 
-    setClassComplete(props.todo.isComplete)
+    setClassComplete(isComplete)
 
     return (
-        <li className="block">
-        <div className={"pb-1" + classComplete}>
-            {props.todo.task}
-        </div>
-        <div>
-            <button type="button" onClick={handleComplete} className="button is-small is-success is-outlined mr-2">Complete</button>
-            <button type="button" onClick={handleDelete} className="button is-small is-danger is-outlined">Delete</button>
-        </div>
+        <li className="block is-flex is-justify-content-space-between">
+            <div>
+                <label className="checkbox">
+                    <input type="checkbox" checked={isComplete} onChange={handleCheckboxChange} className="checkbox mr-2" />
+                    <span className={"pb-1" + classComplete}>
+                        {props.todo.task}
+                    </span>
+                </label>
+            </div>
+            <div>
+                <button type="button" onClick={handleDelete} className="button is-small is-danger is-outlined">
+                    <TrashIcon className='icon' />
+                </button>
+            </div>
         </li>
     )
 }
