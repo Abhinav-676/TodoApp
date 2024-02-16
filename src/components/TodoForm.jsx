@@ -3,15 +3,12 @@ import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 function TodoForm(props) {
-
-    const [todo, setTodo] = useState({task: "", id: ""})
+    const [task, setTask] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
-        const newTodo = {...todo}
-        newTodo.id = uuidv4()
-        props.addTodo(newTodo)
-        setTodo({task: "", id: ""})
+        props.addTodo({task: task, id: uuidv4()})
+        setTask("")
     }
 
     return (
@@ -21,8 +18,8 @@ function TodoForm(props) {
                     <input 
                         className="input" 
                         name="todo"
-                        value={todo.task}
-                        onInput={(e) => {setTodo({task: e.target.value, id: ""})}}
+                        value={task}
+                        onInput={(e) => {setTask(e.target.value)}}
                     />
                 </div>
                 <div className="control">
